@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXIOM // Autonomous Systems Interface</title>
+<meta name="description" content="AXIOM — 自律思考体との接続インターフェース。Git練習用サンプルサイト。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=IBM+Plex+Sans+JP:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- スキャンライン & ノイズのオーバーレイ（装飾） -->
+<div class="crt-overlay" aria-hidden="true"></div>
+
+<!-- 背景キャンバス：グリッド・パーティクル演出 -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- ===================== HEADER ===================== -->
+<header class="topbar">
+  <div class="topbar__left">
+    <span class="logo">AXIOM<span class="logo__dot">.</span></span>
+    <span class="topbar__tag">NEURAL&nbsp;INTERFACE&nbsp;OS</span>
+  </div>
+
+  <nav class="topbar__nav" aria-label="メインナビゲーション">
+    <a href="#overview">[ OVERVIEW ]</a>
+    <a href="#systems">[ SYSTEMS ]</a>
+    <a href="#log">[ LOG ]</a>
+    <a href="#access">[ ACCESS ]</a>
+  </nav>
+
+  <div class="topbar__right">
+    <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+    <span id="clock" class="mono">--:--:--</span>
+  </div>
+</header>
+
+<main>
+  <!-- ===================== HERO ===================== -->
+  <section id="overview" class="hero">
+    <div class="hero__frame">
+      <p class="mono hero__eyebrow">BUILD 7.4.2 — SECTOR 09 / TOKYO</p>
+
+      <h1 class="hero__title" id="glitch-title" data-text="AXIOM">AXIOM</h1>
+
+      <p class="hero__subtitle mono">
+        <span id="typed-line"></span><span class="caret" aria-hidden="true">_</span>
+      </p>
+
+      <div class="hero__meta">
+        <div class="hud-chip">
+          <span class="hud-chip__label">CORE TEMP</span>
+          <span class="hud-chip__value mono" data-metric="temp">36.6°</span>
+        </div>
+        <div class="hud-chip">
+          <span class="hud-chip__label">SYNC RATE</span>
+          <span class="hud-chip__value mono" data-metric="sync">00%</span>
+        </div>
+        <div class="hud-chip">
+          <span class="hud-chip__label">UPLINK</span>
+          <span class="hud-chip__value mono" data-metric="uplink">-- ms</span>
+        </div>
+      </div>
+
+      <a href="#systems" class="scroll-cue" aria-label="次のセクションへスクロール">
+        <span class="scroll-cue__line"></span>
+        SCROLL
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== SYSTEMS ===================== -->
+  <section id="systems" class="systems">
+    <h2 class="section-title reveal">
+      <span class="mono section-title__tag">[ SYSTEMS ]</span>
+      稼働中のコアモジュール
+    </h2>
+
+    <div class="systems__grid">
+
+      <article class="hud-card reveal">
+        <span class="hud-card__corner hud-card__corner--tl"></span>
+        <span class="hud-card__corner hud-card__corner--br"></span>
+        <p class="hud-card__code mono">MOD/01</p>
+        <h3>神経同期リンク</h3>
+        <p>思考パターンをリアルタイムに符号化し、遅延1ms未満で外部端末へ伝送する。</p>
+      </article>
+
+      <article class="hud-card reveal">
+        <span class="hud-card__corner hud-card__corner--tl"></span>
+        <span class="hud-card__corner hud-card__corner--br"></span>
+        <p class="hud-card__code mono">MOD/02</p>
+        <h3>自律推論コア</h3>
+        <p>膨大な選択肢を並列評価し、状況に応じた最適解を自己更新し続ける推論エンジン。</p>
+      </article>
+
+      <article class="hud-card reveal">
+        <span class="hud-card__corner hud-card__corner--tl"></span>
+        <span class="hud-card__corner hud-card__corner--br"></span>
+        <p class="hud-card__code mono">MOD/03</p>
+        <h3>量子暗号シールド</h3>
+        <p>鍵を生成した瞬間に破棄する使い捨て暗号方式で、通信経路そのものを秘匿する。</p>
+      </article>
+
+      <article class="hud-card reveal">
+        <span class="hud-card__corner hud-card__corner--tl"></span>
+        <span class="hud-card__corner hud-card__corner--br"></span>
+        <p class="hud-card__code mono">MOD/04</p>
+        <h3>分散環境適応</h3>
+        <p>気圧・電磁・重力の変化を検知し、筐体構造を数十ミリ秒単位で再構成する。</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== LOG ===================== -->
+  <section id="log" class="log-section">
+    <h2 class="section-title reveal">
+      <span class="mono section-title__tag">[ LOG ]</span>
+      システムログ
+    </h2>
+
+    <div class="terminal reveal">
+      <div class="terminal__bar">
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__title mono">axiom-core --tail -f</span>
+      </div>
+      <div class="terminal__body mono" id="terminal-body">
+        <!-- JSでログ行を順次出力 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ACCESS ===================== -->
+  <section id="access" class="access">
+    <div class="access__panel reveal">
+      <span class="hud-card__corner hud-card__corner--tl"></span>
+      <span class="hud-card__corner hud-card__corner--br"></span>
+
+      <p class="mono access__tag">[ ACCESS ]</p>
+      <h2>接続を要求する</h2>
+      <p class="access__desc">識別コードを送信し、AXIOMコアへのアクセス許可を申請してください。</p>
+
+      <form class="access__form" id="access-form">
+        <label class="visually-hidden" for="access-code">識別コード</label>
+        <input
+          type="text"
+          id="access-code"
+          class="mono"
+          placeholder="IDENTIFIER"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button type="submit" class="btn-primary">REQUEST ACCESS</button>
+      </form>
+
+      <p class="access__result mono" id="access-result" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <p class="mono">AXIOM SYSTEMS — SECTOR 09 / N35.68 E139.76</p>
+  <p class="mono" id="uptime">UPTIME 00:00:00</p>
+  <p class="mono">&copy; 2089 AXIOM SYSTEMS. ALL RIGHTS RESERVED.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
